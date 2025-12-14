@@ -1,0 +1,82 @@
+{
+  "JP225": {
+    "ts": 1765719832.53851,
+    "data": {
+      "symbol": "JP225",
+      "direction": "NEUTRAL",
+      "agreement": 0.66,
+      "confidence": 0.0,
+      "pplx": {
+        "direction": null,
+        "confidence": 0.0,
+        "summary": "(No PPLX API key)"
+      },
+      "gpt": {
+        "direction": null,
+        "confidence": 0.0,
+        "summary": "(No OpenAI API key)"
+      },
+      "ts": 1765719832.53851
+    }
+  },
+  "XAUUSD": {
+    "ts": 1765719832.539207,
+    "data": {
+      "symbol": "XAUUSD",
+      "direction": "NEUTRAL",
+      "agreement": 0.66,
+      "confidence": 0.0,
+      "pplx": {
+        "direction": null,
+        "confidence": 0.0,
+        "summary": "(No PPLX API key)"
+      },
+      "gpt": {
+        "direction": null,
+        "confidence": 0.0,
+        "summary": "(No OpenAI API key)"
+      },
+      "ts": 1765719832.539207
+    }
+  },
+  "NAS100": {
+    "ts": 1765719832.538933,
+    "data": {
+      "symbol": "NAS100",
+      "direction": "NEUTRAL",
+      "agreement": 0.66,
+      "confidence": 0.0,
+      "pplx": {
+        "direction": null,
+        "confidence": 0.0,
+        "summary": "(No PPLX API key)"
+      },
+      "gpt": {
+        "direction": null,
+        "confidence": 0.0,
+        "summary": "(No OpenAI API key)"
+      },
+      "ts": 1765719832.538933
+    }
+  },
+  "GER40": {
+    "ts": 1765719832.53908,
+    "data": {
+      "symbol": "GER40",
+      "direction": "NEUTRAL",
+      "agreement": 0.66,
+      "confidence": 0.0,
+      "pplx": {
+        "direction": null,
+        "confidence": 0.0,
+        "summary": "(No PPLX API key)"
+      },
+      "gpt": {
+        "direction": null,
+        "confidence": 0.0,
+        "summary": "(No OpenAI API key)"
+      },
+      "ts": 1765719832.53908
+    }
+  }
+}

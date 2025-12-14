@@ -1,4 +1,13 @@
 streamlit
+easyocr
+pytesseract
+opencv-python-headless
+pillow
+numpy
+python-dotenv
+
+# Note: PaddleOCR is omitted to keep memory footprint smaller initially
+streamlit
 pillow
 opencv-python-headless>=4.8,<5
 pytesseract

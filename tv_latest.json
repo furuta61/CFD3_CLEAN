@@ -1,0 +1,8 @@
+{
+  "symbol": "JP225",
+  "direction": "BUY",
+  "time": "2025-12-10T14:40:00Z",
+  "timeframe": "15m",
+  "price": 50378.8,
+  "alert_name": "TradingView Signal"
+}
