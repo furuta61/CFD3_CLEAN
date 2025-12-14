@@ -1,0 +1,20 @@
+FROM python:3.11-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    tesseract-ocr libgl1 libglib2.0-0 \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install -U pip setuptools wheel && pip install -r requirements.txt
+
+# Pre-download EasyOCR models to avoid first-run latency
+RUN python - <<'PY'
+import easyocr
+easyocr.Reader(['en','ja'], download_enabled=True)
+PY
+
+COPY . .
+
+CMD ["bash","-lc","streamlit run app_streamlit_v2.py --server.address 0.0.0.0 --server.port $PORT --server.headless true"]

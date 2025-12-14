@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: cfd3-dual-engine
+    env: docker
+    plan: starter
+    region: oregon
+    envVars:
+      - key: STREAMLIT_BROWSER_GATHER_USAGE_STATS
+        value: "false"
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PPLX_API_KEY
+        sync: false
