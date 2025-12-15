@@ -106,3 +106,4 @@ weights/
 .idea/
 *.code-workspace
 .DS_Store
+.venv/
