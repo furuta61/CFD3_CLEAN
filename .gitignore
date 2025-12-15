@@ -107,3 +107,7 @@ weights/
 *.code-workspace
 .DS_Store
 .venv/
+
+.venv/
+__pycache__/
+*.pyc
