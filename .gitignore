@@ -1,0 +1,108 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.env.*
+.ipynb_checkpoints/
+.mypy_cache/
+.pytest_cache/
+
+# --- Streamlit ---
+.streamlit/secrets.toml
+.streamlit/state/
+.history/
+history/
+
+# --- OCR/キャッシュ・一時 ---
+news_cache/
+temp_uploaded.png
+temp_*.png
+debug_*.png
+tv_latest.json
+
+# --- モデル・重い成果物は念のため除外 ---
+models/
+weights/
+*.pt
+*.onnx
+*.tflite
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.env.*
+.ipynb_checkpoints/
+.mypy_cache/
+.pytest_cache/
+
+# --- Streamlit ---
+.streamlit/secrets.toml
+.streamlit/state/
+.history/
+history/
+
+# --- OCR/キャッシュ・一時 ---
+news_cache/
+temp_uploaded.png
+temp_*.png
+debug_*.png
+tv_latest.json
+
+# --- モデル・重い成果物は念のため除外 ---
+models/
+weights/
+*.pt
+*.onnx
+*.tflite
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.env.*
+.ipynb_checkpoints/
+.mypy_cache/
+.pytest_cache/
+
+# --- Streamlit ---
+.streamlit/secrets.toml
+.streamlit/state/
+.history/
+history/
+
+# --- OCR/キャッシュ・一時 ---
+news_cache/
+temp_uploaded.png
+temp_*.png
+debug_*.png
+tv_latest.json
+
+# --- モデル・重い成果物は念のため除外 ---
+models/
+weights/
+*.pt
+*.onnx
+*.tflite
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
