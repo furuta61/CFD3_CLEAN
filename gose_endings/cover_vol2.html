@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>シリーズ02 表紙案</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@500;700&family=Noto+Sans+KR:wght@700&family=Dancing+Script&display=swap" rel="stylesheet">
+<style>
+  :root { --pink:#e2768c; --pink-l:#f6c9d3; --blue:#7f8fc4; --blue-l:#c9d0ee; --ink:#2f3550; --desk:#9a9a9a; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --desk:#3a3a3e; } }
+  :root[data-theme="dark"] { --desk:#3a3a3e; }
+  body { margin:0; padding:24px 16px; background:var(--desk); display:flex; justify-content:center; }
+  .cover { width:500px; max-width:100%; aspect-ratio:500/770; position:relative; background:#fff;
+    font-family:"Noto Sans JP",sans-serif; color:var(--ink); overflow:hidden;
+    border:14px solid; border-image:linear-gradient(90deg,#fbe0e6,#d7dcf3) 1; }
+  .inner { position:absolute; inset:8px; border:1px solid #ead9e0; }
+  .series { position:absolute; top:26px; width:100%; text-align:center; font-family:"Shippori Mincho",serif;
+    font-size:13px; letter-spacing:.25em; color:var(--blue); }
+  .series b { color:var(--pink); font-weight:500; }
+  .ribbon { position:absolute; top:58px; left:28px; right:28px; height:70px; }
+  .title { position:absolute; top:150px; width:100%; text-align:center; font-family:"Shippori Mincho",serif; font-weight:800; line-height:1.12; }
+  .title .n { font-size:78px; background:linear-gradient(90deg,var(--pink),var(--blue)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .title .a { font-size:46px; }
+  .title .l { font-size:56px; letter-spacing:.06em; display:block; }
+  .lead { position:absolute; top:405px; width:100%; text-align:center; font-size:12.5px; font-weight:700; line-height:2; letter-spacing:.06em; }
+  .lead em { font-style:normal; color:var(--pink); font-size:19px; }
+  .lead i { font-style:normal; color:var(--blue); font-size:19px; }
+  .art { position:absolute; top:478px; left:0; right:0; margin:auto; width:300px; height:170px; }
+  .script { position:absolute; font-family:"Dancing Script",cursive; color:#b9b4c9; font-size:14px; line-height:1.15; }
+  .authors { position:absolute; bottom:26px; left:34px; right:34px; display:flex; justify-content:space-between; align-items:flex-end;
+    font-family:"Shippori Mincho",serif; }
+  .authors .m { font-size:15px; letter-spacing:.2em; }
+  .authors small { display:block; font-family:"Noto Sans JP",sans-serif; font-size:7.5px; letter-spacing:.05em; margin-top:4px; }
+  .dot { color:var(--pink); margin-right:4px; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="inner"></div>
+  <div class="series">・<b>韓活韓国語</b>　SERIES 02 ・</div>
+
+  <svg class="ribbon" viewBox="0 0 444 70" aria-hidden="true">
+    <defs><linearGradient id="rb" x1="0" x2="1"><stop offset="0" stop-color="#f6c9d3"/><stop offset="1" stop-color="#c9d0ee"/></linearGradient></defs>
+    <path d="M0 30 L40 22 L40 60 L0 66 L14 48 Z" fill="#f2b8c5"/>
+    <path d="M444 30 L404 22 L404 60 L444 66 L430 48 Z" fill="#b8c2e8"/>
+    <path d="M30 18 Q222 -6 414 18 L414 56 Q222 32 30 56 Z" fill="url(#rb)"/>
+    <text x="222" y="30" text-anchor="middle" font-family="Shippori Mincho" font-weight="700" font-size="15" fill="#2f3550">覚える語尾は<tspan fill="#e2768c" font-size="20">14</tspan>個、</text>
+    <text x="222" y="49" text-anchor="middle" font-family="Shippori Mincho" font-weight="700" font-size="15" fill="#2f3550">推しの気持ちが聞こえる語尾帳。</text>
+  </svg>
+
+  <div class="title"><span class="n">13</span><span class="a">人の</span><span class="l">推しの声が、</span><span class="l">会話になる</span></div>
+
+  <div class="lead">バラエティ<em>123</em>話・<i>11</i>万行の字幕から数えた<br>頻度順<em>14</em>の語尾で聞きとる韓国語</div>
+
+  <svg class="art" viewBox="0 0 300 170" aria-hidden="true">
+    <defs>
+      <linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f4b6c4"/><stop offset="1" stop-color="#9eabda"/></linearGradient>
+    </defs>
+    <!-- 吹き出しの中のダイヤ -->
+    <path d="M38 14 H262 a18 18 0 0 1 18 18 V112 a18 18 0 0 1 -18 18 H170 L150 160 L130 130 H38 a18 18 0 0 1 -18 -18 V32 a18 18 0 0 1 18 -18 Z" fill="none" stroke="url(#g)" stroke-width="3"/>
+    <g transform="translate(150 60) scale(.8)">
+      <path d="M-62 -22 L-36 -42 H36 L62 -22 L0 46 Z" fill="url(#g)" opacity=".85"/>
+      <path d="M-62 -22 H62 M-36 -42 L-18 -22 L0 -42 L18 -22 L36 -42 M-18 -22 L0 46 L18 -22" stroke="#fff" stroke-width="1.6" fill="none" opacity=".9"/>
+    </g>
+    <text x="150" y="118" text-anchor="middle" font-family="Noto Sans KR" font-weight="700" font-size="14" fill="#e2768c">…잖아!</text>
+  </svg>
+  <div class="script" style="left:22px; top:560px; transform:rotate(-12deg)">Listen<br>from the right</div>
+  <div class="script" style="right:22px; top:560px; transform:rotate(10deg); text-align:right">14 endings<br>cover 85%</div>
+
+  <div class="authors">
+    <div><span class="dot">◆</span><span class="m">たんふる先生</span><small>NHKラジオ「ステップアップハングル講座」元講師</small></div>
+    <div style="text-align:right"><div class="m"><span class="dot">◆</span>うぉん</div><div class="m"><span class="dot">◆</span>ユユ子</div><small>（CARAT）</small></div>
+  </div>
+</div>
+</body>
+</html>
