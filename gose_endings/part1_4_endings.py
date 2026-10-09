@@ -25,9 +25,14 @@ BR = re.compile(r"\[[^\]]*\]")
 PA = re.compile(r"\([^)]*\)")
 HANGUL = re.compile(r"[가-힣]")
 J_TAGS = ["JKS", "JKC", "JKG", "JKO", "JKB", "JKV", "JKQ", "JX", "JC"]
-MEMBERS = ["에스쿱스", "쿱스", "승철", "정한", "조슈아", "슈아", "지수", "문준휘", "준휘", "준",
+# 一般語と衝突する 준・찬・지수 は除く(誤検出が多いため)
+MEMBERS = ["에스쿱스", "쿱스", "승철", "정한", "조슈아", "슈아", "문준휘", "준휘",
            "호시", "순영", "원우", "우지", "지훈", "디에잇", "명호", "민규", "도겸", "석민",
-           "승관", "부승관", "버논", "한솔", "디노", "찬"]
+           "승관", "부승관", "버논", "한솔", "디노"]
+# 요を外すと別の形になってしまう語尾は、요付きの形のまま見出しにする
+NO_STRIP = {"세요", "에요", "예요"}
+# 합쇼체は요を取らないので、반말比率は対象外
+HAPSHO = {"습니다", "ㅂ니다", "습니까", "ㅂ니까", "십시오", "읍시다", "ㅂ시다", "습니다만"}
 
 
 def clean(t):
@@ -62,7 +67,9 @@ def strip_yo(form):
     form = nf(form)
     if form == "죠":
         return "지", True
-    if form.endswith("요") and len(form) > 1:
+    if form in NO_STRIP:
+        return form, True
+    if form.endswith("요") and len(form) > 1 and form not in NO_STRIP:
         return form[:-1], True
     return form, False
 
@@ -146,14 +153,19 @@ def main():
     list_col = None
     if a.list:
         with open(a.list, encoding="utf-8-sig", newline="") as f:
-            rd = csv.DictReader(f)
-            cands = [c for c in rd.fieldnames if c and c.strip().lower() in
-                     ("lemma", "word", "語", "単語", "단어", "표제어", "見出し語", "base", "見出し")]
-            list_col = cands[0] if cands else rd.fieldnames[0]
-            for r in rd:
-                w = (r.get(list_col) or "").strip()
-                if w:
-                    list_words.add(w)
+            body = [ln for ln in f if ln.strip() and not ln.lstrip().startswith("#")]  # コメント行を除く
+        rows_l = list(csv.DictReader(body))
+        # ハングルだけの値が最も多い列を語の列とみなす
+        score = Counter()
+        for r in rows_l:
+            for c, v in r.items():
+                if c is not None and v and re.fullmatch(r"[가-힣]+", v.strip()):
+                    score[c] += 1
+        list_col = score.most_common(1)[0][0] if score else None
+        for r in rows_l:
+            w = (r.get(list_col) or "").strip() if list_col else ""
+            if re.fullmatch(r"[가-힣]+", w):
+                list_words.add(w)
     line_lemmas = [set() for _ in range(N)]
 
     for li, (l, toks) in enumerate(zip(lines, toks_all)):
@@ -245,8 +257,9 @@ def main():
 
     def common_vals(form, tag, it):
         top5 = sum(c for _, c in it.eps.most_common(5))
+        ratio = "対象外(합쇼체)" if form in HAPSHO else round((it.n - it.yo) / it.n, 3)
         return [form, tag, it.n, round(it.n / denom * 10000, 2), it.yo, it.n - it.yo,
-                round((it.n - it.yo) / it.n, 3), len(it.eps), round(top5 / it.n, 3)]
+                ratio, len(it.eps), round(top5 / it.n, 3)]
 
     def write(name, head, rows):
         with open(os.path.join(a.out, name), "w", newline="", encoding="utf-8-sig") as f:
@@ -374,7 +387,10 @@ def main():
     S.append("- 同形で複数タグに出る形(計30件以上、上位15):")
     for n, f, c in multi[:15]:
         S.append(f"  - {f}: {c}")
-    S.append("\n## 正規化の注記\n\n- 語尾末尾の 요 を外して見出し形に統合(죠 は 지+요 扱い)。行末の 요/JX は直前要素の 요付き。"
+    S.append("\n## (f) 共起の確認(先頭3項目)\n")
+    for r in co_rows[:3]:
+        S.append(f"- {r[0]}/{r[1]}: " + ", ".join(r[3:8]))
+    S.append("\n## 正規化の注記\n\n- 語尾末尾の 요 を外して見出し形に統合(죠 は 지+요 扱い。세요・에요・예요 は外さない)。합쇼체の반말比率は対象外。行末の 요/JX は直前要素の 요付き。"
              "\n- 並び: 内容語はタグのみ(같/있/없/하/되/싶 は形を残す)。ETM 을→ㄹ・은→ㄴ、NNB 것→거、不規則印(-R/-I 等)を除去。"
              "\n- kiwi の終声字母(ᆫ ᆯ ᆸ ᆷ ᆻ)は互換字母(ㄴ ㄹ ㅂ ㅁ ㅆ)に統一。\n- 1万形態素あたりの分母は記号(S*)を除いた形態素数。")
     txt = "\n".join(S)
