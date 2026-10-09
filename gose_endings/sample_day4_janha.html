@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 4 잖아 見本</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #d9536f;
+    --pink-deep: #c9445f;
+    --pink-soft: #fde8ec;
+    --blue-soft: #e6eef9;
+    --blue-ink: #4f6fa8;
+    --ink: #2b2b2b;
+    --muted: #8a8a8a;
+    --line: #eee5e8;
+    --frame-a: #fbd5dc;
+    --frame-b: #c3c9ec;
+    --desk: #9a9a9a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --desk: #3a3a3e; }
+  }
+  :root[data-theme="dark"] { --desk: #3a3a3e; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px 16px; background: var(--desk);
+    font-family: "Noto Sans JP", "Hiragino Sans", sans-serif; color: var(--ink);
+    display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;
+  }
+  .ko { font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; }
+  .page {
+    width: 340px; max-width: 100%; aspect-ratio: 9 / 16; padding: 14px;
+    background: linear-gradient(180deg, var(--frame-a) 0%, #f3d7e6 45%, var(--frame-b) 100%);
+  }
+  .card {
+    height: 100%; background: #fff; border-radius: 10px; overflow: hidden;
+    display: flex; flex-direction: column; position: relative;
+  }
+  .pad { padding: 22px 22px 18px; }
+  .center { text-align: center; }
+  .chip { display: inline-block; font-size: 10px; color: var(--pink-deep); background: var(--pink-soft);
+    border-radius: 999px; padding: 3px 10px; font-weight: 700; }
+  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .55em; color: var(--pink); margin-bottom: 14px; }
+  .sub { font-size: 11px; color: var(--blue-ink); font-weight: 700; margin-top: 12px; letter-spacing: .08em; }
+  .ruby { font-size: 11px; color: var(--muted); letter-spacing: .2em; margin-top: 4px; }
+  .hero { font-size: 76px; font-weight: 900; color: var(--pink); line-height: 1.05; margin: 2px 0 8px; }
+  .count { font-size: 22px; font-weight: 700; color: var(--pink); }
+  .pos { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .box { border-radius: 6px; padding: 10px 14px; margin-top: 12px; text-align: left; }
+  .box .lab { font-size: 9.5px; font-weight: 700; margin-bottom: 4px; }
+  .box .val { font-size: 12.5px; font-weight: 700; line-height: 1.55; }
+  .box.blue { background: var(--blue-soft); } .box.blue .lab { color: var(--blue-ink); }
+  .box.pink { background: var(--pink-soft); } .box.pink .lab { color: var(--pink-deep); }
+  .note { font-size: 10.5px; color: var(--muted); line-height: 1.8; margin-top: 14px; }
+  h2 { font-size: 21px; line-height: 1.45; margin: 0 0 10px; }
+  .bar { width: 36px; height: 3px; background: var(--blue-ink); border-radius: 2px; margin: 10px 0 14px; }
+  p.body { font-size: 12px; line-height: 1.9; margin: 0; }
+  ul.tight { margin: 4px 0 0; padding-left: 1em; font-size: 10.5px; line-height: 1.7; font-weight: 400; }
+  .pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  .pill { font-size: 10px; color: var(--pink-deep); background: var(--pink-soft); border-radius: 999px; padding: 4px 10px; }
+  .head { background: linear-gradient(180deg, #e0647c, var(--pink-deep)); color: #fff; padding: 14px 22px 12px; }
+  .head .num { font-size: 26px; font-weight: 700; line-height: 1; }
+  .head .ttl { font-size: 11px; letter-spacing: .5em; margin-top: 6px; font-weight: 700; }
+  .story { font-size: 11.5px; line-height: 2; margin: 0; }
+  .story .hl { color: var(--pink); font-weight: 700; }
+  .line { font-size: 21px; font-weight: 700; margin: 6px 0 2px; line-height: 1.6; }
+  .line rt { font-size: 8px; color: var(--muted); font-weight: 400; font-family: "Noto Sans JP", sans-serif; }
+  .line .t { color: var(--pink); }
+  .gloss { font-size: 11px; color: var(--muted); padding-bottom: 12px; border-bottom: 1px dashed var(--line); }
+  .cm { padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .cm .h { font-size: 10.5px; color: var(--pink); font-weight: 700; }
+  .cm .b { font-size: 11.5px; line-height: 1.7; margin-top: 3px; }
+  .cm .l { font-size: 10px; color: var(--blue-ink); margin-top: 3px; }
+  .cm .l b { color: var(--pink); }
+  table.rev { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 6px; }
+  table.rev th { font-size: 9px; color: var(--muted); font-weight: 500; text-align: left; padding: 4px 2px; border-bottom: 1px solid var(--line); }
+  table.rev td { padding: 9px 2px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  table.rev td.kana { color: var(--pink); font-weight: 700; font-size: 12px; }
+  .why { background: #fff8e6; border-radius: 6px; padding: 10px 14px; margin-top: 14px; }
+  .why .lab { font-size: 9.5px; color: #b07a00; font-weight: 700; }
+  .why p { font-size: 10.5px; line-height: 1.75; margin: 4px 0 0; }
+  .stat { width: 100%; border-radius: 8px; box-shadow: 0 0 0 1px var(--line) inset; margin-top: 14px; }
+  .stat .r { display: flex; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 12px; font-weight: 700; }
+  .stat .r:last-child { border-bottom: 0; }
+  .stat .r span:last-child { color: var(--pink); }
+  .foot { font-size: 8.5px; color: var(--muted); margin-top: 10px; line-height: 1.6; }
+  .pg { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-size: 8px; color: #c8c8c8; }
+</style>
+</head>
+<body>
+
+<!-- 1. 見出しページ -->
+<section class="page"><div class="card"><div class="pad center">
+  <span class="chip">第1部 気持ちの語尾 ｜ 4 / 13</span>
+  <div class="sub">GOSE 行末 ・ 4番目の気持ち</div>
+  <div class="ruby">チャナ ／ ジャナ</div>
+  <div class="hero ko">잖아</div>
+  <div class="count">1,533回</div>
+  <div class="pos">語尾（文の終わり）</div>
+  <div class="box blue"><div class="lab">教科書の意味</div><div class="val">〜じゃないか（〜지 않아の縮約）</div></div>
+  <div class="box pink"><div class="lab">番組での気持ち</div><div class="val">「知ってるでしょ」。相手を共通の了解に引き込む</div></div>
+  <div class="note">文の最後に「チャナ」「ジャナ」が聞こえたら、<br>この気持ち。8割以上は요なしの반말。</div>
+</div><div class="pg">04</div></div></section>
+
+<!-- 2. INTRO -->
+<section class="page"><div class="card"><div class="pad">
+  <div class="eyebrow">I N T R O</div>
+  <h2>推しが、こう<br>言っていました</h2>
+  <div class="bar"></div>
+  <p class="body">ルールを聞いていなかったメンバーに、ひとこと。「さっき言ったじゃん」。この「じゃん」が<span class="ko">잖아</span>です。相手も知っているはずのことを持ち出して、自分の側に引き込む語尾です。</p>
+  <div class="box blue"><div class="lab">右から聞く</div>
+    <ul class="tight">
+      <li>最後に「チャナ／ジャナ」→「知ってるでしょ」の気持ち</li>
+      <li>「チャナヨ」と요が付いたら、目上や視聴者向け</li>
+      <li>その手前の音で、何を「知ってるでしょ」なのかが分かる</li>
+    </ul></div>
+  <div class="pills"><span class="pill">① 言ったじゃん</span><span class="pill">② あるじゃん</span><span class="pill">③ そうじゃん</span></div>
+</div><div class="pg">05</div></div></section>
+
+<!-- 3. 場面カード -->
+<section class="page"><div class="card">
+  <div class="head"><div class="num">01</div><div class="ttl">言 っ た じ ゃ ん</div></div>
+  <div class="pad" style="padding-top:16px">
+    <p class="story">じゃんけんの説明が終わった直後。<br>ひとりだけ、パーを出していた。<br><span class="hl">「グーしか出しちゃだめ」と言ったはずなのに——</span></p>
+    <div class="line ko"><ruby>아까<rt>アッカ</rt></ruby> <ruby>내가<rt>ネガ</rt></ruby> <ruby class="t">말했잖아<rt>マレッチャナ</rt></ruby>!</div>
+    <div class="gloss">さっき言ったじゃん！</div>
+    <div class="cm"><div class="h">@momo_kpopnote</div><div class="b">説明中ずっと水飲んでたの見てた</div><div class="l">👍 1,804 <b>♥</b></div></div>
+    <div class="cm"><div class="h">@hana_0412</div><div class="b">最後の「チャナ」だけ聞き取れれば、言いたいことは分かる</div><div class="l">👍 962 <b>♥</b></div></div>
+  </div>
+<div class="pg">06</div></div></section>
+
+<!-- 4. 逆引き -->
+<section class="page"><div class="card"><div class="pad">
+  <div class="eyebrow">R E V E R S E</div>
+  <h2>聞こえた音から<br>もとの形へ</h2>
+  <div class="bar"></div>
+  <table class="rev">
+    <tr><th>聞こえる音</th><th>綴り</th><th>もとの形</th></tr>
+    <tr><td class="kana">マレッチャナ</td><td class="ko">말했잖아</td><td class="ko">말하다 ＋ 었 ＋ 잖아</td></tr>
+    <tr><td class="kana">イッチャナ</td><td class="ko">있잖아</td><td class="ko">있다 ＋ 잖아</td></tr>
+    <tr><td class="kana">アルジャナ</td><td class="ko">알잖아</td><td class="ko">알다 ＋ 잖아</td></tr>
+    <tr><td class="kana">クロチャナ</td><td class="ko">그렇잖아</td><td class="ko">그렇다 ＋ 잖아</td></tr>
+  </table>
+  <div class="why"><div class="lab">なぜ？ 気になる人だけ</div>
+    <p>チャナとジャナ、2つの音があるのは、前の音しだいで濁ったり濁らなかったりするから。韓国語では同じ語尾なので、聞き分けなくて大丈夫。</p></div>
+</div><div class="pg">07</div></div></section>
+
+<!-- 5. SUMMARY -->
+<section class="page"><div class="card"><div class="pad">
+  <div class="eyebrow">S U M M A R Y</div>
+  <h2 style="color:var(--pink)"><span class="ko">잖아</span>は、相手を<br>こっち側に引き込む。</h2>
+  <p class="body">「知ってるでしょ」と共通の了解を持ち出す語尾。123話の会話で数えると、こうなります。</p>
+  <div class="stat">
+    <div class="r"><span>行末に出た回数</span><span>1,533回</span></div>
+    <div class="r"><span>出てきた回</span><span>123話中123話</span></div>
+    <div class="r"><span>요なし（반말）</span><span>83.7%</span></div>
+    <div class="r"><span>Day 4までの累積カバー率</span><span>75%</span></div>
+  </div>
+  <div class="foot">※ 回数はGOING SEVENTEEN 123話の字幕で、行末が잖아／잖아요の行。累積カバー率の分母は、行末が終結語尾の行（50,783行）。例文とコメントは見本用の創作。</div>
+</div><div class="pg">08</div></div></section>
+
+</body>
+</html>
