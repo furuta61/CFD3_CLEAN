@@ -370,17 +370,17 @@ def main():
                 continue
             if not rs:
                 continue
-            cols = rs[0].keys()
-            ycols = [c for c in cols if c and re.search(r"year|年|date|연도", c, re.I)]
+            cols = [c for c in rs[0].keys() if isinstance(c, str) and c]
+            ycols = [c for c in cols if re.search(r"year|年|date|연도", c, re.I)]
             for ic in cols:
-                vals = set(r.get(ic) for r in rs)
+                vals = set(str(r.get(ic)) for r in rs)
                 if len(run_clips & vals) >= .9 * len(run_clips):
                     for yc in ycols:
                         m = {}
                         for r in rs:
                             y = re.search(r"(20\d\d)", str(r.get(yc, "")))
                             if y:
-                                m[r[ic]] = int(y.group(1))
+                                m[str(r.get(ic))] = int(y.group(1))
                         if run_clips <= set(m):
                             maps.append((p, ic, yc, m))
         elif p.endswith(".json"):
